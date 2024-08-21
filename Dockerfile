@@ -13,7 +13,7 @@ WORKDIR /app
 COPY --from=dependencies /app/node_modules /app/node_modules
 COPY . .
 
-EXPOSE 5001
+EXPOSE 3000
 
 CMD ["node", "index.js"]
 
