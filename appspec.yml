@@ -4,7 +4,7 @@ files:
   # Specify the source and destination files/directories if needed
   # For example:
   - source: /
-    destination: /home/ec2-user/
+    destination: /home/ubuntu/
 
 hooks:
   BeforeInstall:
@@ -14,4 +14,4 @@ hooks:
   AfterInstall:
     - location: scripts/after_deploy.sh
       timeout: 300
-      runas: ec2-user
+      runas: root
