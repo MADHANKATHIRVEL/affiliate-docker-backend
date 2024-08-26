@@ -1,16 +1,17 @@
 version: 0.0
 os: linux
-
 files:
+  # Specify the source and destination files/directories if needed
+  # For example:
   - source: /
-    destination: /var/www/backend
+    destination: /home/ec2-user/app/ 
 
 hooks:
   BeforeInstall:
-    - location: scripts/before_install.sh
+    - location: scripts/before_deploy.sh
       timeout: 300
-
-  ApplicationStart:
-    - location: scripts/application_start.sh
+      runas: root
+  AfterInstall:
+    - location: scripts/after_deploy.sh
       timeout: 300
-
+      runas: ec2-user
