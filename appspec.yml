@@ -4,7 +4,7 @@ files:
   # Specify the source and destination files/directories if needed
   # For example:
   - source: /
-    destination: /home/ubuntu/
+    destination: /home/
 
 hooks:
   BeforeInstall:
