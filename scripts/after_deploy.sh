@@ -31,6 +31,16 @@ if docker ps -a -q -f name=$APP_NAME; then
   docker rm $APP_NAME
 fi
 
+# Remove old Docker images
+echo "Removing old Docker images..."
+# List all images with the ECR repository tag and their IDs
+IMAGES=$(docker images --format "{{.Repository}}:{{.Tag}} {{.ID}}" | grep '851725501422.dkr.ecr.ap-south-1.amazonaws.com/backend' | grep -v 'latest' | awk '{print $2}')
+
+for IMAGE_ID in $IMAGES; do
+  echo "Removing old image: $IMAGE_ID"
+  docker rmi $IMAGE_ID || true
+done
+
 # Run the new Docker container
 echo "Running Docker container..."
 docker run -d --name $APP_NAME -p $HOST_PORT:$CONTAINER_PORT $ECR_IMAGE_URI
